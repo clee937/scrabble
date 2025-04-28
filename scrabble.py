@@ -20,8 +20,24 @@ def score_word(word):
 			point_total += letter_to_points[letter]
 	return point_total
 
-brownie_points = score_word("BROWNIE")
-
-print(f'Brownie points: {brownie_points}')
-
 # 3. Score a game:
+
+# Dictionary that maps players to a list of the words they have played
+player_to_words = {
+"player1": ["BLUE", "TENNIS", "EXIT"],
+"wordNerd": ["EARTH", "EYES", "MACHINE"],
+"Lexi Con": ["ERASER", "BELLY", "HUSKY"],
+"Prof Reader": ["ZAP", "COMA", "PERIOD"]
+}
+
+# Dictionary that maps players to the total points for the words they have played
+player_to_points = {}
+
+# Function that loops through the player_to_words dictionary to calculate the total score for each player and adds them to the player_to_points dictionary
+for player, words in player_to_words.items():
+  player_points = 0
+  for word in words:
+    player_points += score_word(word)
+  player_to_points[player] = player_points
+
+print(player_to_points)
