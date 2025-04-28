@@ -16,8 +16,7 @@ letter_to_points[' '] = 0
 def score_word(word):
 	point_total = 0
 	for letter in word:
-		if letter in letter_to_points:
-			point_total += letter_to_points[letter]
+		point_total += letter_to_points.get(letter, 0)
 	return point_total
 
 # 3. Score a game:
@@ -44,24 +43,23 @@ def update_point_totals():
 # A function that takes in a player and a word, and adds that word to the list of words they've played in the player_to_words dictionary
 def play_word(player, word):
 	if player in player_to_words:
-		player_to_words[player].append(word) 
+		player_to_words[player].append(word.upper()) 
 	else:
-		player_to_words[player] = [word]
+		player_to_words[player] = [word.upper()]
 	update_point_totals()
     
 update_point_totals()
-print(player_to_points)
-print("")
-
-play_word('player1', 'ALLIGATOR')
-play_word('code_warrior', 'MOSS')
-print(player_to_words)
-print("")
-print(player_to_points)
-print("")
-play_word('code_warrior', 'CADENCE')
-
 
 print(player_to_words)
 print("")
 print(player_to_points)
+
+# Alternatives:
+# We can also use the code below when instantiating the letter_points_dictionary to handle lowercase within the dictionary instead of using upper() in the play_word() function. Although the duplication of keys is involved with this option, it allows for maximum speed at runtime, without the upper() function calls later on.
+
+# If we need to keep the memory small, with no duplicate letter entries, then using upper() within the play_word() function is the best option as it will convert the letters at runtime.
+
+# letter_to_points = {}
+# for letter, point in zip(letters, points):
+#     letter_to_points[letter] = point
+#     letter_to_points[letter.lower()] = point
