@@ -33,11 +33,16 @@ player_to_words = {
 # Dictionary that maps players to the total points for the words they have played
 player_to_points = {}
 
-# Function that loops through the player_to_words dictionary to calculate the total score for each player and adds them to the player_to_points dictionary
+# Loops through the player_to_words dictionary to calculate the total score for each player and adds them to the player_to_points dictionary
 for player, words in player_to_words.items():
   player_points = 0
   for word in words:
     player_points += score_word(word)
   player_to_points[player] = player_points
 
-print(player_to_points)
+# A function that takes in a player and a word, and adds that word to the list of words they've played in the player_to_words dictionary
+def play_word(player, word):
+  if player in player_to_words:
+    player_to_words[player].append(word) 
+  else:
+    player_to_words[player] = [word]
