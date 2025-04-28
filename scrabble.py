@@ -5,4 +5,5 @@ points = [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 4, 1, 3, 10, 1, 1, 1, 1, 4, 4, 
 # Creates a dictionary using dictionary comprehension that has the elements of 'letters' as the keys and the elements of 'points' as the values
 letter_to_points = {key:value for key, value in zip(letters, points)}
 
+letter_to_points[' '] = 0
 
